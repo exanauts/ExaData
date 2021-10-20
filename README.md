@@ -5,5 +5,7 @@ This repository contains the MATPOWER file for the TAMU2000 case with hurricane 
 1. **``case_ACTIVSg2000.Ctgs_random``** contains random line contingencies used for development
 1. **``case_ACTIVSg2000.Ctgs``** contains feasible line contingencies run through [PowerModels.jl](https://github.com/lanl-ansi/PowerModels.jl/)
 
+In addition it contains standard MATPOWER cases covered by the MATPOWER [license](MATPOWER_LICENSE).
+
 ## Funding
 This research was supported by the Exascale Computing Project (17-SC-20-SC), a joint project of the U.S. Department of Energy’s Office of Science and National Nuclear Security Administration, responsible for delivering a capable exascale ecosystem, including software, applications, and hardware technology, to support the nation’s exascale computing imperative.
