@@ -1,6 +1,6 @@
-#!/bin/bash
-# Script to create Artifact tarball
-# Execute in ../ExaData with `ExaData/create_artifact.sh`
+# #!/bin/bash
+# # Script to create Artifact tarball
+# # Execute in ../ExaData with `ExaData/create_artifact.sh`
 
 if [ ! -d "ExaData" ]
 then
@@ -9,11 +9,15 @@ then
 fi
 
 cd ExaData; hash=`git rev-parse --short HEAD`; cd ..
-tar --exclude='create_artifact.sh' --exclude='ExaData/.git' -cvzf ExaData-$hash.tar.gz ExaData
+filename=ExaData-$hash.tar.gz
+tar --exclude='.gitignore' --exclude='Manifest.toml' --exclude='Project.toml' --exclude='create_toml.jl' --exclude='create_artifact.sh' --exclude='ExaData/.git' -cvzf $filename ExaData
 
-if [ -f "ExaData-$hash.tar.gz" ]
+if [ ! -f "$filename" ]
 then
-    exit 0
+    exit 1
 fi
-exit 1
 
+
+cd ExaData
+julia --project create_toml.jl $filename
+exit 0
