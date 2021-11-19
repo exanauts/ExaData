@@ -1,6 +1,6 @@
-# #!/bin/bash
-# # Script to create Artifact tarball
-# # Execute in ../ExaData with `ExaData/create_artifact.sh`
+#!/bin/bash
+# Script to create Artifact tarball
+# Execute in ../ExaData with `ExaData/create_artifact.sh`
 
 if [ ! -d "ExaData" ]
 then
