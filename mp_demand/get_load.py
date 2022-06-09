@@ -47,8 +47,7 @@ elif num == 288:
 else:
     ax.set_xlabel('Time')
 plt.show()
-
-i = 0
+#i = 0
 
 for i in range(num):
     print(format(y[i], '10.8f'))
