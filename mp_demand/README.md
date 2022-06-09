@@ -15,11 +15,14 @@ The following command will print out scaling factors.
 $ python get_load.py rt_hourlysysload_20181002_20181009.csv > scaling_factors.txt
 ```
 
-These scaling factors are computed hourly.
+These scaling factors are computed hourly for a week horizon.
+
 If you want to apply finer scale, then use `interpolate.py` in the following way:
+
 ```bash
 $ python interpolate.py scaling_factors.txt 60
 ```
+
 The above interpolates each hour to compute scaling factors for each minute.
 As a result, we have 168*60 = 10080 scaling factors.
 A new file will be generated containing these factors with name `scaling_factors_mult_by_60.txt`.
@@ -29,8 +32,20 @@ The following command will generate real and reactive loads for the case with na
 `case_numscales.Pd` and `case_numscales.Qd`, respectively, where `numscales` is an integer denoting the number of time periods in the file.
 
 ```bash
+$ python interpolate_load.py case.m scaling_factors.txt
+```
+
+or
+
+```bash
 $ python interpolate_load.py case.m scaling_factors_mult_by_60.txt
 ```
+
+## Notes
+
+- `scaling_factors_mult_by_60.txt` generated from this script results in different load data from the existing `*_onehour_60.*`.
+- `reverse_engineered_scale.txt` is a scaling factor file created from `case1354pegase_onehour_60.Pd`. This was used to generate the following files `case{1354pegase,2869pegase,9241pegase,13659pegase,_ACTIVSg25k,_ACTIVSg70k}_60.{Pd,Qd}`.
+
 
 ## Downloading time-series data for renewable generation
 
@@ -47,4 +62,3 @@ Links to individual data are below:
 - [`DAY_AHEAD_Natural_Inflow.csv`: the solar power potential of the CSP plant by hour](https://raw.githubusercontent.com/GridMod/RTS-GMLC/master/RTS_Data/timeseries_data_files/CSP/DAY_AHEAD_Natural_Inflow.csv)
 - [`DAY_AHEAD_hydro.csv`: the hydro power output for each hydro plant by hour](https://raw.githubusercontent.com/GridMod/RTS-GMLC/master/RTS_Data/timeseries_data_files/Hydro/DAY_AHEAD_hydro.csv)
 - [`REAL_TIME_hydro.csv`: the hydro power output for each hydro plant by 5-minute interval](https://raw.githubusercontent.com/GridMod/RTS-GMLC/master/RTS_Data/timeseries_data_files/Hydro/REAL_TIME_hydro.csv)
-
